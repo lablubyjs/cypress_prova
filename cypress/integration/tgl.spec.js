@@ -50,7 +50,15 @@ describe('TGL', () => {
          cy.get('.sc-idiyUo > .sc-eCYdqJ').click()
       });
 
-      
+      it('change password', () => {
+
+         cy.visit('/change-password')
+
+         cy.get(':nth-child(1) > input').type('1234567')
+         cy.get(':nth-child(2) > input').type('1234567')
+
+         cy.get('.sc-idiyUo > .sc-eCYdqJ').click()
+      })
    })
 
 })
