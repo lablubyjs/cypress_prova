@@ -41,24 +41,22 @@ describe('TGL', () => {
    })
 
    context('Reset Password', () => {
-      it('request link to reset password', () => {
+      it('request link to reset password and change-password', () => {
 
          cy.visit('/reset-password')
 
          cy.get('input').type('cris@email.com')
 
          cy.get('.sc-idiyUo > .sc-eCYdqJ').click()
-      });
-
-      it('change password', () => {
-
-         cy.visit('/change-password')
 
          cy.get(':nth-child(1) > input').type('1234567')
          cy.get(':nth-child(2) > input').type('1234567')
 
          cy.get('.sc-idiyUo > .sc-eCYdqJ').click()
-      })
+
+      });
+
+
    })
 
    context('Create Random Bets', () => {
@@ -68,9 +66,49 @@ describe('TGL', () => {
 
          cy.visit('/games')
 
+         cy.intercept('GET', '**/cart_games**').as('waitEventRoute')
+
+         cy.wait('@waitEventRoute').then((xhr) => {
+            expect(xhr.response.statusCode).be.eq(200)
+         })
+
+         // Complete Game
          cy.get('.beykUU').click()
 
+         // Add to Cart
+         cy.get('.ggQUDW').click()
 
+         // Mega-Sena Button
+         cy.get('.kgwfls').click()
+
+         // Complete Game
+         cy.get('.beykUU').click()
+
+         // Add to Cart
+         cy.get('.ggQUDW').click()
+
+         // Complete Game
+         cy.get('.beykUU').click()
+
+         // Add to Cart
+         cy.get('.ggQUDW').click()
+
+         // Complete Game
+         cy.get('.beykUU').click()
+
+         // Add to Cart
+         cy.get('.ggQUDW').click()
+
+         // Button Save
+         cy.get('.sc-gKXOVf > .sc-eCYdqJ').click()
+
+         // Validation of the min-cart-value stream
+         cy.get('.sc-iqcoie > p').invoke('text').then(value => {
+            return value
+         }).should('contain', 'Minimum value of')
+
+
+         cy.get('.sc-crXcEl').click()
       });
    })
 
