@@ -28,7 +28,7 @@
 Cypress.Commands.add('login', () => {
 
    cy.token().then(response => {
-      const { token } = response.body.token.token
+      const token = response.body.token.token
 
       window.localStorage.setItem('token', token)
 
