@@ -40,5 +40,17 @@ describe('TGL', () => {
       });
    })
 
-   
+   context('Reset Password', () => {
+      it('request link to reset password', () => {
+
+         cy.visit('/reset-password')
+
+         cy.get('input').type('cris@email.com')
+
+         cy.get('.sc-idiyUo > .sc-eCYdqJ').click()
+      });
+
+      
+   })
+
 })
