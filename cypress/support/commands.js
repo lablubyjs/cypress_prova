@@ -35,3 +35,17 @@ Cypress.Commands.add('login', () => {
    })
 })
 
+Cypress.Commands.add('token', () => {
+   cy.request({
+      method: 'POST',
+      url: `${Cypress.env('apiUrl')}/login`,
+      body: JSON.stringify({
+         email: 'cris@email.com',
+         password: '1234567'
+      }),
+      headers: {
+         'Content-Type': 'application/json',
+         Accept: 'application/json'
+      }
+   })
+})
