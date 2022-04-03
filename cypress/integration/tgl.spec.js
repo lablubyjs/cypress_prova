@@ -61,4 +61,17 @@ describe('TGL', () => {
       })
    })
 
+   context('Create Random Bets', () => {
+      it('create game with complete game, save and validate min-cart-value', () => {
+
+         cy.login()
+
+         cy.visit('/games')
+
+         cy.get('.beykUU').click()
+
+
+      });
+   })
+
 })
