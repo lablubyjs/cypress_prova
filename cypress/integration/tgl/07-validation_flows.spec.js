@@ -87,6 +87,20 @@ describe('TGL', () => {
       
          });
       
+         it('validate invalid email validation on reset password page', () => {
+
+            cy.visit('/reset-password')
+      
+            cy.get('input').type('invalid email')
+      
+            cy.get('.sc-idiyUo > .sc-eCYdqJ').click()
+      
+            cy.get('.sc-gicCDI').should('be.visible').invoke('text').then(value => {
+               return value
+            }).should('contain', 'Invalid email')
+            
+         });
+         
       })
 
    })
