@@ -43,24 +43,34 @@ describe('TGL', () => {
          it('validate empty field validation on registration page', () => {
 
             cy.visit('/registration')
-      
+
             cy.get('.sc-idiyUo > .sc-eCYdqJ').click()
-      
+
             cy.get('.sc-idiyUo > :nth-child(2)').should('be.visible').invoke('text').then(value => {
                return value
             }).should('contain', 'Enter a name')
-      
+
             cy.get('.sc-idiyUo > :nth-child(4)').should('be.visible').invoke('text').then(value => {
                return value
             }).should('contain', 'Please provide a valid email')
-      
+
             cy.get('.sc-idiyUo > :nth-child(6)').should('be.visible').invoke('text').then(value => {
                return value
             }).should('contain', 'Enter the password')
-            
+
          });
-      
-         
+
+         it('validate invalid email validation on registration page', () => {
+            cy.visit('/registration')
+
+            cy.get(':nth-child(2) > input').type('invalid email')
+
+            cy.get('.sc-idiyUo > .sc-eCYdqJ').click()
+
+            cy.get('.sc-idiyUo > :nth-child(4)').should('be.visible').invoke('text').then(value => {
+               return value
+            }).should('contain', 'Invalid email')
+         });
       })
 
    })
