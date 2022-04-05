@@ -27,7 +27,7 @@
 
 Cypress.Commands.add('login', () => {
 
-   cy.token().then(response => {
+   cy.getToken().then(response => {
       const token = response.body.token.token
 
       window.localStorage.setItem('token', token)
@@ -35,7 +35,7 @@ Cypress.Commands.add('login', () => {
    })
 })
 
-Cypress.Commands.add('token', () => {
+Cypress.Commands.add('getToken', () => {
    cy.request({
       method: 'POST',
       url: `${Cypress.env('apiUrl')}/login`,
