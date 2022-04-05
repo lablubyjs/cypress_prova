@@ -120,6 +120,21 @@ describe('TGL', () => {
       
          });
       
+         it('validate validation of different passwords on registration change password page', () => {
+
+            cy.visit('/change-password')
+      
+            cy.get(':nth-child(1) > input').type('password')
+      
+            cy.get(':nth-child(2) > input').type('different password')
+      
+            cy.get('.sc-idiyUo > .sc-eCYdqJ').click()
+      
+            cy.get('.sc-gicCDI').should('be.visible').invoke('text').then(value => {
+               return value
+            }).should('contain', 'Passwords must be the same')
+            
+         });
          
       })
 
