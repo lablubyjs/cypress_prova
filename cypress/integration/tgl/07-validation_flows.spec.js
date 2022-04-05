@@ -73,5 +73,21 @@ describe('TGL', () => {
          });
       })
 
+      context('Reset Password', () => {
+
+         it('validate empty field validation on reset password page', () => {
+      
+            cy.visit('/reset-password')
+      
+            cy.get('.sc-idiyUo > .sc-eCYdqJ').click()
+      
+            cy.get('.sc-gicCDI').should('be.visible').invoke('text').then(value => {
+               return value
+            }).should('contain', 'Please provide a valid email')
+      
+         });
+      
+      })
+
    })
 })
