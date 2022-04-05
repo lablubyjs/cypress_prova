@@ -100,6 +100,26 @@ describe('TGL', () => {
             }).should('contain', 'Invalid email')
             
          });
+
+      })
+
+      context('Change Password', () => {
+         it('validate empty field validation on change change password page', () => {
+      
+            cy.visit('/change-password')
+      
+            cy.get('.sc-idiyUo > .sc-eCYdqJ').click()
+      
+            cy.get('.sc-idiyUo > :nth-child(2)').should('be.visible').invoke('text').then(value => {
+               return value
+            }).should('contain', 'Enter a password')
+      
+            cy.get('.sc-idiyUo > :nth-child(4)').should('be.visible').invoke('text').then(value => {
+               return value
+            }).should('contain', 'Enter a password')
+      
+         });
+      
          
       })
 
